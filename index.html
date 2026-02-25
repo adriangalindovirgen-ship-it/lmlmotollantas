@@ -37,8 +37,117 @@ button { width:100%; padding:12px; border-radius:8px; border:none; background:bl
 }
 </style>
 
-<header style="background:black; padding:15px; text-align:center;">
+<style>
+/* ===== HEADER MOTOGP EXTREMO ===== */
+.header-motogp {
+  position: relative;
+  padding: 30px 10px;
+  text-align: center;
+  overflow: hidden;
+  background: #000;
+  border-bottom: 4px solid #ff0000;
+}
+
+/* Textura carbono */
+.header-motogp::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    repeating-linear-gradient(
+      45deg,
+      #111 0px,
+      #111 2px,
+      #000 2px,
+      #000 6px
+    );
+  opacity: 0.4;
+  z-index: 0;
+}
+
+/* Destello rojo dinámico */
+.header-motogp::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,0,0,0.15) 0%, transparent 60%);
+  animation: pulseRed 3s infinite ease-in-out;
+  z-index: 0;
+}
+
+@keyframes pulseRed {
+  0% { transform: scale(1); opacity: 0.2; }
+  50% { transform: scale(1.2); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 0.2; }
+}
+
+/* Bandera cuadros */
+.flag {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 8px;
+  background-image: 
+    linear-gradient(45deg, #000 25%, #fff 25%, #fff 50%, #000 50%, #000 75%, #fff 75%, #fff 100%);
+  background-size: 20px 20px;
+  animation: moveFlag 10s linear infinite;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+@keyframes moveFlag {
+  from { background-position: 0 0; }
+  to { background-position: 40px 0; }
+}
+
+/* Logo */
+.logo {
+  height: 100px;
+  max-width: 95%;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 15px red);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 35px #ff0000);
+}
+
+/* Línea velocidad */
+.speed-line {
+  position: absolute;
+  top: 50%;
+  left: -100%;
+  width: 200%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, red, transparent);
+  animation: speedMove 1.5s linear infinite;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+@keyframes speedMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .logo {
+    height: 70px;
+  }
+}
+</style>
+
+<header class="header-motogp">
+  <div class="speed-line"></div>
   <img src="logo-lml.png" alt="LML MotoLlantas" class="logo">
+  <div class="flag"></div>
 </header>
 
 <div class="container">

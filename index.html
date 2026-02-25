@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LML MotoLlantas | Llantas para Moto en Guadalajara</title>
+
+<style>
+body { margin:0; font-family:Arial; background:#f5f5f5; }
+header { background:#000; color:#fff; padding:15px; text-align:center; font-size:22px; font-weight:bold; }
+.container { padding:15px; }
+.grid { display:grid; gap:15px; }
+@media(min-width:768px){ .grid{ grid-template-columns:repeat(3,1fr);} }
+.product-card { background:#fff; border-radius:12px; padding:15px; box-shadow:0 4px 10px rgba(0,0,0,0.1);}
+.product-card img { width:100%; border-radius:10px; }
+button { width:100%; padding:12px; border-radius:8px; border:none; background:black; color:white; font-weight:bold; cursor:pointer;}
+.contacto { background:#111; color:white; padding:25px 15px; text-align:center;}
+.contacto a { color:#25D366; text-decoration:none; font-weight:bold;}
+.whatsapp-float { position:fixed; bottom:20px; right:20px; background:#25D366; color:white; font-size:26px; padding:15px; border-radius:50%; text-decoration:none;}
+.call-float { position:fixed; bottom:85px; right:20px; background:#000; color:white; font-size:22px; padding:14px; border-radius:50%; text-decoration:none;}
+.btn-llegar { display:inline-block; background:#e53935; color:white; padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:bold; margin-top:10px;}
+</style>
+</head>
+
+<body>
+
+<header>LML MotoLlantas</header>
+
+<div class="container">
+<h2>Catálogo</h2>
+<div id="productos" class="grid"></div>
+</div>
+
+<section class="contacto">
+<h2>Contacto</h2>
+<p><strong>Dirección:</strong><br>
+Hacienda de Tala 3200,<br>
+Col. Balcones de Oblatos,<br>
+Guadalajara, Jalisco</p>
+
+<p><strong>Teléfono:</strong><br>
+<a href="tel:+523330074431">33 3007 4431</a></p>
+
+<p><strong>WhatsApp:</strong><br>
+<a href="https://wa.me/523330074431" target="_blank">33 3007 4431</a></p>
+
+<iframe
+src="https://www.google.com/maps?q=Hacienda+de+Tala+3200,+Balcones+de+Oblatos,+Guadalajara,+Jalisco,+Mexico&output=embed"
+width="100%"
+height="250"
+style="border:0; border-radius:12px;"
+loading="lazy"></iframe>
+
+<a 
+href="https://www.google.com/maps/dir/?api=1&destination=Hacienda+de+Tala+3200,+Balcones+de+Oblatos,+Guadalajara,+Jalisco,+Mexico"
+target="_blank"
+class="btn-llegar">
+📍 Cómo llegar
+</a>
+</section>
+
+<a href="https://wa.me/523330074431" class="whatsapp-float" target="_blank">💬</a>
+<a href="tel:+523330074431" class="call-float">📞</a>
+
+<script>
+
+const BACKEND_URL = "https://TU_BACKEND_URL.vercel.app";
+
+async function cargarProductos() {
+  const res = await fetch(BACKEND_URL + "/api/productos");
+  const data = await res.json();
+
+  const contenedor = document.getElementById("productos");
+  contenedor.innerHTML = "";
+
+  data.forEach(producto => {
+    contenedor.innerHTML += `
+      <div class="product-card">
+        <img src="${producto.imagen || 'https://via.placeholder.com/400x250'}">
+        <h3>${producto.nombre}</h3>
+        <p>Marca: ${producto.marca}</p>
+        <p><strong>$${producto.precio} MXN</strong></p>
+        <button onclick='comprar(${JSON.stringify(producto)})'>Comprar</button>
+      </div>
+    `;
+  });
+}
+
+async function comprar(producto) {
+  const res = await fetch(BACKEND_URL + "/api/create-preference", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      carrito: [producto],
+      envio: 0
+    })
+  });
+
+  const data = await res.json();
+  window.location.href = data.init_point;
+}
+
+cargarProductos();
+
+</script>
+
+</body>
+</html>

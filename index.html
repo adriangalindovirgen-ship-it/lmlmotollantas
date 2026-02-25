@@ -21,39 +21,23 @@ button { width:100%; padding:12px; border-radius:8px; border:none; background:bl
 .btn-llegar { display:inline-block; background:#e53935; color:white; padding:12px 20px; border-radius:8px; text-decoration:none; font-weight:bold; margin-top:10px;}
 </style>
 </head>
-
-<body>
-
 <style>
-.logo {
-  height: 80px;
-  max-width: 90%;
-}
-
-@media (max-width: 600px) {
-  .logo {
-    height: 60px;
-  }
-}
-</style>
-
-<style>
-/* ===== HEADER MOTOGP EXTREMO ===== */
+/* ===== HEADER MOTOGP EXTREMO PRO ===== */
 .header-motogp {
   position: relative;
-  padding: 30px 10px;
+  padding: 40px 10px;
   text-align: center;
   overflow: hidden;
   background: #000;
   border-bottom: 4px solid #ff0000;
 }
 
-/* Textura carbono */
+/* Fondo fibra carbono */
 .header-motogp::before {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: 
+  background:
     repeating-linear-gradient(
       45deg,
       #111 0px,
@@ -61,11 +45,11 @@ button { width:100%; padding:12px; border-radius:8px; border:none; background:bl
       #000 2px,
       #000 6px
     );
-  opacity: 0.4;
+  opacity: 0.35;
   z-index: 0;
 }
 
-/* Destello rojo dinámico */
+/* Glow rojo dinámico */
 .header-motogp::after {
   content: "";
   position: absolute;
@@ -84,17 +68,17 @@ button { width:100%; padding:12px; border-radius:8px; border:none; background:bl
   100% { transform: scale(1); opacity: 0.2; }
 }
 
-/* Bandera cuadros */
+/* Bandera cuadros inferior */
 .flag {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 12px;
-  background-image: 
+  height: 8px;
+  background-image:
     linear-gradient(45deg, #000 25%, #fff 25%, #fff 50%, #000 50%, #000 75%, #fff 75%, #fff 100%);
   background-size: 20px 20px;
   animation: moveFlag 10s linear infinite;
-  opacity: 0.7;
+  opacity: 0.8;
   z-index: 1;
 }
 
@@ -103,50 +87,32 @@ button { width:100%; padding:12px; border-radius:8px; border:none; background:bl
   to { background-position: 40px 0; }
 }
 
-/* Logo */
+/* Logo sticker */
 .logo {
-  height: 100px;
+  height: 130px;
   max-width: 95%;
   position: relative;
   z-index: 2;
-  filter: drop-shadow(0 0 15px red);
-  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 25px red);
+  transition: transform 0.4s ease, filter 0.4s ease;
 }
 
+/* Efecto agresivo hover */
 .logo:hover {
-  transform: scale(1.1);
-  filter: drop-shadow(0 0 35px #ff0000);
-}
-
-/* Línea velocidad */
-.speed-line {
-  position: absolute;
-  top: 50%;
-  left: -100%;
-  width: 200%;
-  height: 4px;
-  background: linear-gradient(90deg, transparent, red, transparent);
-  animation: speedMove 1.5s linear infinite;
-  opacity: 0.6;
-  z-index: 1;
-}
-
-@keyframes speedMove {
-  from { transform: translateX(0); }
-  to { transform: translateX(100%); }
+  transform: scale(1.08) rotate(-1deg);
+  filter: drop-shadow(0 0 45px #ff0000);
 }
 
 /* Responsive */
 @media (max-width: 600px) {
   .logo {
-    height: 70px;
+    height: 85px;
   }
 }
 </style>
 
 <header class="header-motogp">
-  <div class="speed-line"></div>
-  <img src="Logo-lml.png" alt="LML MotoLlantas" class="logo">
+  <img src="logo-lml-sticker.png" alt="LML MotoLlantas" class="logo">
   <div class="flag"></div>
 </header>
 

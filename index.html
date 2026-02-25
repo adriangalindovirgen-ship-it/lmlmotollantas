@@ -80,7 +80,9 @@ async function cargarProductos() {
         <h3>${producto.nombre}</h3>
         <p>Marca: ${producto.marca}</p>
         <p><strong>$${producto.precio} MXN</strong></p>
-        <button onclick='comprar(${JSON.stringify(producto)})'>Comprar</button>
+        <button <button onclick="comprarWhatsApp('${producto.nombre}', '${producto.precio}')">
+Comprar por WhatsApp
+</button>
       </div>
     `;
   });

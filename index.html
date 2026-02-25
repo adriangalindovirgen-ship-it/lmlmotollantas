@@ -25,69 +25,7 @@ button { width:100%; padding:12px; border-radius:8px; border:none; background:bl
 <body>
 
 <style>
-/* ===== HEADER MOTOGP EXTREMO PRO ===== */
-.header-motogp {
-  position: relative;
-  padding: 40px 10px;
-  text-align: center;
-  overflow: hidden;
-  background: #000;
-  border-bottom: 4px solid #ff0000;
-}
-
-/* Fondo fibra carbono */
-.header-motogp::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(
-      45deg,
-      #111 0px,
-      #111 2px,
-      #000 2px,
-      #000 6px
-    );
-  opacity: 0.35;
-  z-index: 0;
-}
-
-/* Glow rojo dinámico */
-.header-motogp::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,0,0,0.15) 0%, transparent 60%);
-  animation: pulseRed 3s infinite ease-in-out;
-  z-index: 0;
-}
-
-@keyframes pulseRed {
-  0% { transform: scale(1); opacity: 0.2; }
-  50% { transform: scale(1.2); opacity: 0.4; }
-  100% { transform: scale(1); opacity: 0.2; }
-}
-
-/* Bandera cuadros inferior */
-.flag {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 8px;
-  background-image:
-    linear-gradient(45deg, #000 25%, #fff 25%, #fff 50%, #000 50%, #000 75%, #fff 75%, #fff 100%);
-  background-size: 20px 20px;
-  animation: moveFlag 10s linear infinite;
-  opacity: 0.8;
-  z-index: 1;
-}
-
-@keyframes moveFlag {
-  from { background-position: 0 0; }
-  to { background-position: 40px 0; }
+,
 }
 
 /* Logo sticker */
@@ -100,19 +38,6 @@ button { width:100%; padding:12px; border-radius:8px; border:none; background:bl
   transition: transform 0.4s ease, filter 0.4s ease;
 }
 
-/* Efecto agresivo hover */
-.logo:hover {
-  transform: scale(1.08) rotate(-1deg);
-  filter: drop-shadow(0 0 45px #ff0000);
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .logo {
-    height: 85px;
-  }
-}
-</style>
 
 <header class="header-motogp">
   <img src="logo-lml-sticker.png" alt="LML MotoLlantas" class="logo">
